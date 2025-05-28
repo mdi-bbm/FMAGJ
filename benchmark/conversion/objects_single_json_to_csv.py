@@ -14,19 +14,18 @@ class JsonParser(PydanticFrozen):
         """Extracts all bbox data from the JSON content."""
         all_bbox_data = []
         for key in self.json_content:
-            if key.startswith('bbox_data_'):
-                for item in self.json_content[key]:
-                    all_bbox_data.append(DetectedObjectInfo(
-                        label_name=item['label_name'],
-                        bbox_x=item['bbox_x'],
-                        bbox_y=item['bbox_y'],
-                        bbox_width=item['bbox_width'],
-                        bbox_height=item['bbox_height'],
-                        image_name=item['image_name'],
-                        image_width=item['image_width'],
-                        image_height=item['image_height'],
-                        confidence=item.get('confidence', 1.0)
-                    ))
+            for item in self.json_content[key]:
+                all_bbox_data.append(DetectedObjectInfo(
+                    label_name=item['label_name'],
+                    bbox_x=item['bbox_x'],
+                    bbox_y=item['bbox_y'],
+                    bbox_width=item['bbox_width'],
+                    bbox_height=item['bbox_height'],
+                    image_name=item['image_name'],
+                    image_width=item['image_width'],
+                    image_height=item['image_height'],
+                    confidence=item.get('confidence', 1.0)
+                ))
         return all_bbox_data
 
 
