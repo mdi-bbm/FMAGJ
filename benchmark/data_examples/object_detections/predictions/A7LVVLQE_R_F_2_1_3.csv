@@ -1,0 +1,12 @@
+label_name,bbox_x,bbox_y,bbox_width,bbox_height,image_name,image_width,image_height
+Small_lymphocyte,1095,802,190,206,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Thrombocyte,1975,1510,43,56,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Thrombocyte,1666,1061,50,50,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Thrombocyte,520,196,76,56,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Thrombocyte,2485,734,44,46,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Thrombocyte,784,1666,38,49,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Echinocyte,525,1147,170,166,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Echinocyte,925,1175,177,177,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Echinocyte,1689,1251,157,161,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Echinocyte,1630,676,157,161,A7LVVLQE_R_F_2_1_3.png,2560,1920
+Echinocyte,1506,917,175,168,A7LVVLQE_R_F_2_1_3.png,2560,1920
