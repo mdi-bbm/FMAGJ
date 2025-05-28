@@ -1,0 +1,9 @@
+.idea/
+.venv/
+venv/
+.env
+.vscode/
+benchmark/scripts/mlruns/
+mlruns
+__pycache__/
+.DS_Store
