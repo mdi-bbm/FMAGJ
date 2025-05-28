@@ -30,7 +30,7 @@ class JsonParser(PydanticFrozen):
         return all_bbox_data
 
 
-class BoundingBoxGrouper(DigitalAssistantFrozen):
+class BoundingBoxGrouper(PydanticFrozen):
     bbox_data: list[DetectedObjectInfo]
 
     def group_by_image_name(self) -> dict[str, list[DetectedObjectInfo]]:
@@ -41,7 +41,7 @@ class BoundingBoxGrouper(DigitalAssistantFrozen):
         return images
 
 
-class CsvWriter(DigitalAssistantFrozen):
+class CsvWriter(PydanticFrozen):
     image_name_detection_info: dict[str, list[DetectedObjectInfo]]
     output_csv_dir: Path
     forced_label: str | None = None
@@ -75,7 +75,7 @@ class CsvWriter(DigitalAssistantFrozen):
                     })
 
 
-class JsonToCsvConverter(DigitalAssistantFrozen):
+class JsonToCsvConverter(PydanticFrozen):
     forced_label: str | None = None
 
     def convert(
