@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import shutil
 import logging
 import pandas as pd
 from pathlib import Path
@@ -13,37 +14,37 @@ logger = logging.getLogger(__name__)
 class JsonToCsvConverter:
     def convert(self, upload_dir: str, output_csv_dir: str):
         """
-        Конвертирует все JSON файлы в указанной папке upload_dir (без поиска Detection)
+        Converts all JSON files in the specified upload_dir (without searching in Detection subfolders)
         
-        :param upload_dir: Путь к папке с JSON файлами
-        :param output_csv_dir: Папка для сохранения CSV файлов
+        :param upload_dir: Path to the directory containing JSON files
+        :param output_csv_dir: Directory to save CSV files
         """
         os.makedirs(output_csv_dir, exist_ok=True)
         
-        # Ищем JSON-файлы прямо в upload_dir, а не в подпапках Detection
+        # Find JSON files directly in upload_dir, not in Detection subfolders
         json_files = list(Path(upload_dir).glob('*.json'))
-        logger.info(f"Найдено JSON файлов: {len(json_files)}")
+        logger.info(f"Found JSON files: {len(json_files)}")
         
         for json_file in json_files:
             try:
                 self._convert_single_json(json_file, output_csv_dir)
-                logger.info(f"Успешно обработан файл: {json_file}")
+                # logger.info(f"Successfully processed file: {json_file}")
             except Exception as e:
-                logger.error(f"Ошибка при обработке файла {json_file}: {str(e)}")
+                logger.error(f"Error processing file {json_file}: {str(e)}")
     
     def _convert_single_json(self, json_path: Path, output_dir: str):
         """
-        Конвертирует один JSON файл в CSV с нужным форматом
+        Converts a single JSON file to CSV with required format
         
-        :param json_path: Путь к JSON файлу
-        :param output_dir: Папка для сохранения CSV
+        :param json_path: Path to JSON file
+        :param output_dir: Directory to save CSV
         """
         with open(json_path, 'r') as f:
             data = json.load(f)
         
-        # Определяем тип JSON структуры и преобразуем к общему формату
+        # Determine JSON structure type and convert to common format
         if isinstance(data, dict):
-            # Формат, где ключ - имя изображения, значение - список объектов
+            # Format where key is image name, value is object list
             csv_data = []
             for image_name, objects in data.items():
                 for obj in objects:
@@ -53,7 +54,7 @@ class JsonToCsvConverter:
                     if csv_row:
                         csv_data.append(csv_row)
         elif isinstance(data, list):
-            # Формат, где каждый элемент содержит image и objects
+            # Format where each item contains image and objects
             csv_data = []
             for item in data:
                 if not isinstance(item, dict):
@@ -67,10 +68,10 @@ class JsonToCsvConverter:
                     if csv_row:
                         csv_data.append(csv_row)
         else:
-            raise ValueError(f"Неизвестный формат JSON в файле {json_path}")
+            raise ValueError(f"Unknown JSON format in file {json_path}")
         
         if not csv_data:
-            logger.warning(f"Нет данных для конвертации в файле {json_path}")
+            logger.warning(f"No data to convert in file {json_path}")
             return
         
         df = pd.DataFrame(csv_data)
@@ -85,11 +86,11 @@ class JsonToCsvConverter:
     
     def _create_csv_row(self, obj: Dict[str, Any], image_name: str) -> Dict[str, Any]:
         """
-        Создает строку CSV из объекта аннотации
+        Creates a CSV row from annotation object
         
-        :param obj: Словарь с данными объекта
-        :param image_name: Имя изображения
-        :return: Словарь с данными для CSV строки
+        :param obj: Dictionary with object data
+        :param image_name: Image name
+        :return: Dictionary with data for CSV row
         """
         try:
             return {
@@ -104,26 +105,46 @@ class JsonToCsvConverter:
                 'confidence': float(obj.get('confidence', 1.0))
             }
         except (ValueError, TypeError) as e:
-            logger.warning(f"Ошибка преобразования данных объекта: {obj}. Ошибка: {str(e)}")
+            logger.warning(f"Error converting object data: {obj}. Error: {str(e)}")
             return None
+        
+def remove_bbox_from_filename(ground_truth_csv_dir, target_dir):
+    os.makedirs(target_dir, exist_ok=True)
+    for filename in os.listdir(ground_truth_csv_dir):
+        if filename.endswith(".csv"):
+            new_filename = filename.replace("_bbox", "")
+            
+            source_path = os.path.join(ground_truth_csv_dir, filename)
+            target_path = os.path.join(target_dir, new_filename)
+            
+            shutil.copy2(source_path, target_path)
+            # print(f"Copied: {filename} -> {new_filename}")
+    logging.info(f"Removed _bbox from filenames in {ground_truth_csv_dir}")
+    shutil.rmtree(ground_truth_csv_dir)
+    logging.info(f"Removed {ground_truth_csv_dir}")
 
-def convert_all_jsons_to_csv(upload_dir: str, output_csv_dir: str):
+def convert_all_jsons_to_csv(ground_truth_json_dir: str, output_csv_dir: str):
     """
-    Основная функция для конвертации всех JSON во всех папках Detection
+    Main function to convert all JSONs in all directories
     
-    :param upload_dir: Путь к папке upload (содержащей различные подпапки)
-    :param output_csv_dir: Папка для сохранения CSV файлов
+    :param ground_truth_json_dir: Path to ground truth json directory (containing various subdirectories)
+    :param output_csv_dir: Directory to save CSV files
     """
     converter = JsonToCsvConverter()
-    converter.convert(upload_dir, output_csv_dir)
-    logging.info(f"Все CSV файлы сохранены в {output_csv_dir}")
+    converter.convert(ground_truth_json_dir, output_csv_dir)
+    logging.info(f"All CSV files saved to {output_csv_dir}")
+
+    remove_bbox_from_filename(output_csv_dir, target_dir)
+
+    shutil.rmtree(ground_truth_json_dir)
+    logging.info(f"Removed {ground_truth_json_dir}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Использование: python script.py <путь_к_папке_upload> [output_csv_dir]")
-        sys.exit(1)
+    storage_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
+    benchmark_directory = os.path.join(storage_root, "benchmark_data/object_detections")
+    target_dir = "/home/dstu601/isolated/isolated/benchmark_data/object_detections/ground_truth"
     
-    upload_dir = sys.argv[1]
-    output_csv_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(upload_dir, "output_csv_dir")
+    ground_truth_json_dir = os.path.join(benchmark_directory, "input_jsons_ground_truth")
+    output_csv_dir = os.path.join(benchmark_directory, "ground_truth_csv_dir")
     
-    convert_all_jsons_to_csv(upload_dir, output_csv_dir)
+    convert_all_jsons_to_csv(ground_truth_json_dir, output_csv_dir)
