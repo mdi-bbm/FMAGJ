@@ -117,10 +117,12 @@ This repo contains scripts to run Fluorescence Microscopic Astrocyte Gap Junctio
 ### Project Structure
 
 - **scripts**
+   - split_assets.py — splits source data into train (80%) and benchmark (20%) sets, converts images to PNG 
    - conversion.py — prepares images and markup files from platform format to dino format
    - train.py — model training
    - inference.py — inference + preparation of results to benchmark format
    - train_pipeline.py — run train and inference scripts alternately
+   - conversion_bbox2csv.py — converts assets' JSON annotations to CSV format for benchmark evaluation
 
 ## Setting Up a Virtual Environment
 
