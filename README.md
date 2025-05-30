@@ -8,7 +8,7 @@ This repository contains the following folders, which are described below:
   - [Install requirements](#installing-packages) 
   - [Start Training Pipeline](#run-training-only-no-inference)
   - [Run Benchmarks](#benchmarks-of-trained-detection-models)
-  - [Expected Results](#viewing-results-in-mlflow)
+  - [Expected Results](#3.-viewing-results-in-mlflow)
 
 # Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images
 
