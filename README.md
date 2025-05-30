@@ -1,7 +1,9 @@
 # Fluorescence Microscopic Astrocyte Gap Junction Images Dataset
 
-
-| <img src="img1.png" width="200"/> | <img src="img2.png" width="200"/> |
+<div align="center">
+  <img src="img1.png" width="200"/>
+  <img src="img2.png" width="200"/>
+</div>
 
 This repository contains the following folders, which are described below:
   - [Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images](#datasets-of-fluorescence-microscopic-astrocyte-gap-junction-images) 
