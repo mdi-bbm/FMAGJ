@@ -24,7 +24,7 @@ def convert_to_png_and_move(json_file, raw_dir, output_dir):
     try:
         with Image.open(img_path) as img:
             img.save(output_path, 'PNG')
-        print(f"Converted and saved: {output_path}")
+        # print(f"Converted and saved: {output_path}")
     except Exception as e:
         print(f"Error converting {img_path}: {str(e)}")
 
@@ -39,8 +39,19 @@ def split_data(source_dir, uploads_dir, benchmark_dir):
     benchmark_dir.mkdir(parents=True, exist_ok=True)
     
     # Directory for converted PNGs
-    inference_dir = source_dir.parent / "for_inference"
+    inference_dir = source_dir.parent.parent / "for_inference"
     inference_dir.mkdir(parents=True, exist_ok=True)
+
+    label_properties_dir = source_dir.parent / "Label_Properties"
+        
+    # Copy Label_Properties directory if it exists
+    if label_properties_dir.exists():
+        # dest_label_properties = uploads_dir / source_dir.name / "Label_Properties"
+        dest_label_properties = uploads_dir / "Label_Properties"
+        shutil.copytree(label_properties_dir, dest_label_properties, dirs_exist_ok=True)
+        print(f"  Copied Label_Properties to {dest_label_properties}")
+    else:
+        print(f"  No Label_Properties directory found in {source_dir}")
     
     # Process all subdirectories in the source directory
     for subdir in source_dir.iterdir():
@@ -49,7 +60,7 @@ def split_data(source_dir, uploads_dir, benchmark_dir):
             
         print(f"Processing {subdir.name}...")
         
-        # Paths to Detection and Raw inside the subdirectory
+        # Paths to Detection, Raw and Label_Properties inside the subdirectory
         detection_dir = subdir / "Detection"
         raw_dir = subdir / "Raw"
         
@@ -107,9 +118,13 @@ def split_data(source_dir, uploads_dir, benchmark_dir):
 if __name__ == "__main__":
     storage_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
     
-    source_directory = os.path.join(storage_root, 'data', "RAT__gap_junctions")
-    uploads_directory = os.path.join(storage_root, 'data', "uploads")
+    rat_source_directory = os.path.join(storage_root, 'data', "RAT__gap_junctions", "Assets")
+    human_source_directory = os.path.join(storage_root, 'data', "HUMAN__gap_junctions", "Assets")
+
+    uploads_directory = os.path.join(storage_root, 'data', "upload")
     benchmark_directory = os.path.join(storage_root, "benchmark_data/object_detections/input_jsons_ground_truth")
     
-    split_data(source_directory, uploads_directory, benchmark_directory)
+    split_data(rat_source_directory, uploads_directory, benchmark_directory)
+    split_data(human_source_directory, uploads_directory, benchmark_directory)
+
     print("Done!")
