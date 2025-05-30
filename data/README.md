@@ -1,8 +1,8 @@
-# Dataset Structure and Metadata
+# Datasets Structure and Metadata
 
 ## Overview
 The `data` folder contains datasets of human gap junctions (`HUMAN_gap_junctions`) and rat gap junctions (`RAT_gap_junctions`).  
-This dataset includes organized folders and metadata related to biological or medical images.
+This datasets includes organized folders and metadata related to biological or medical images.
 
 ## Root Dataset Structure
 
