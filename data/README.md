@@ -75,7 +75,7 @@ Defines the annotation categories/classes. Example:
 }
 ```  
 - **gap_junction** — Class name.
-- **#d6f176** — Hexadecimal color code for visualization.
+- **#4EF8FF** — Hexadecimal color code for visualization.
 
 
 ### metadata_static.json
