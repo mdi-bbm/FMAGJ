@@ -4,6 +4,12 @@ This repository contains the following folders, which are described below:
   - [Training Detection Models on Datasets](#training-detection-models-on-datasets)
   - [Benchmarks of Trained Detection Models](#benchmarks-of-trained-detection-models)
 
+# Quick start 
+  - [Install requirements](#installing-packages) 
+  - [Start Training Pipeline](#run-training-only-no-inference)
+  - [Run Benchmarks](#benchmarks-of-trained-detection-models)
+  - [Expected Results](#viewing-results-in-mlflow)
+
 # Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images
 
 ## Overview
@@ -96,15 +102,9 @@ Information about device types involved in data collection and device scaling fo
 ```  
 
 # Training Detection Models on Datasets 
-This repo contains research code to run Fluorescence Microscopic Astrocyte Gap Junction Images Dataset training and inference.
+This repo contains scripts to run Fluorescence Microscopic Astrocyte Gap Junction Images Dataset training and inference.
 
 ## Rules and Guidelines
-
-### Train recommendations 
-  - train. For best results, use at least 15 images for training
-  - inference recommended to process no more than 1000 images at once
-
-Hardware Recommendations: NVIDIA RTX 4090
 
 ### Project Structure
 
@@ -113,7 +113,6 @@ Hardware Recommendations: NVIDIA RTX 4090
    - train.py — model training
    - inference.py — inference + preparation of results to benchmark format
    - train_pipeline.py — run train and inference scripts alternately
-
 
 ## Setting Up a Virtual Environment
 
@@ -149,6 +148,8 @@ With the virtual environment activated, install the necessary packages using:
 ```shell
 pip install -r requirements.txt
 ```
+### Installing AutoGluon
+To run detection models follow to additional step [AutoGluon](https://auto.gluon.ai/stable/install.html#:~:text=autogluon.multimodal%20%2D%20functionality,3.6/3.7/3.8)
 
 ## Code launch
 
@@ -191,6 +192,11 @@ Preset Models Quality
     - high_quality: Uses DINO-Resnet50 preset model
     - best_quality: Uses DINO-SwinL preset model
 
+### Train recommendations 
+  - Train: For best results, use at least 15 images for training
+  - Inference: recommended to process no more than 1000 images at once
+
+Was tested on: NVIDIA RTX 4090, GPU 24GB
 
 # Benchmarks of Trained Detection Models
 
