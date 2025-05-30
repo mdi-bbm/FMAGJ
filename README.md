@@ -4,6 +4,7 @@
   <img src="img1.png" width="400"/>
   <img src="img2.png" width="400"/>
 </div>
+<div> </div>
 
 
 This repository contains the following folders, which are described below:
@@ -94,7 +95,7 @@ Defines the annotation categories/classes. Example:
 }
 ```  
 - **gap_junction** — Class name.
-- **#d6f176** — Hexadecimal color code for visualization.
+- **#4EF8FF** — Hexadecimal color code for visualization.
 
 
 ### metadata_static.json
