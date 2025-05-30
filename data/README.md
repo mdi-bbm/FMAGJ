@@ -88,5 +88,4 @@ Information about device types involved in data collection and device scaling fo
   "scaling_value": "60x"
 }
 ```  
-- **gap_junction** — Class name.
-- **#d6f176** — Hexadecimal color code for visualization.
+
