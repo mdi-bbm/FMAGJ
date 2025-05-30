@@ -202,7 +202,7 @@ Was tested on: NVIDIA RTX 4090, GPU 24GB
 
 Tools to calculate benchmarks, save and analyze results.
 
-See `scripts` module for examples.
+See `benchmark` module for examples.
 
 ## Using MLFlow
 
