@@ -4,7 +4,7 @@
   <img src="img1.png" width="400"/>
   <img src="img2.png" width="400"/>
 </div>
-<div> </div>
+
 
 
 This repository contains the following folders, which are described below:
@@ -210,7 +210,6 @@ Was tested on: NVIDIA RTX 4090, GPU 24GB
 
 Tools to calculate benchmarks, save and analyze results.
 
-See `benchmark` module for examples.
 
 ## Using MLFlow
 
