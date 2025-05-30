@@ -1,8 +1,8 @@
 # Fluorescence Microscopic Astrocyte Gap Junction Images Dataset
 This repository contains the following folders, which are described below:
-  - [Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images](#datasets-structure-and-metadata) 
-  - [Training Detection Models on Datasets](#training-and-test-scripts)
-  - [Benchmarks of Trained Detection Models](#benchmark)
+  - [Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images](#datasets-of-fluorescence-microscopic-astrocyte-gap-junction-images) 
+  - [Training Detection Models on Datasets](#training-detection-models-on-datasets)
+  - [Benchmarks of Trained Detection Models](#benchmarks-of-trained-detection-models)
 
 # Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images
 
