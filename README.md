@@ -1,10 +1,10 @@
 # Fluorescence Microscopic Astrocyte Gap Junction Images Dataset
 This repository contains the following folders, which are described below:
-  - [Datasets of Images](#datasets-structure-and-metadata) 
-  - [Training and Test Scripts](#training-and-test-scripts)
-  - [Benchmark](#benchmark)
+  - [Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images](#datasets-structure-and-metadata) 
+  - [Training Detection Models on Datasets](#training-and-test-scripts)
+  - [Benchmarks of Trained Detection Models](#benchmark)
 
-# Datasets Structure and Metadata
+# Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images
 
 ## Overview
 The `data` folder contains datasets of human gap junctions (`HUMAN_gap_junctions`) and rat gap junctions (`RAT_gap_junctions`).  
@@ -95,7 +95,7 @@ Information about device types involved in data collection and device scaling fo
 }
 ```  
 
-# Training and Test Scripts 
+# Training Detection Models on Datasets 
 This repo contains research code to run Fluorescence Microscopic Astrocyte Gap Junction Images Dataset training and inference.
 
 ## Rules and Guidelines
@@ -192,7 +192,7 @@ Preset Models Quality
     - best_quality: Uses DINO-SwinL preset model
 
 
-# Benchmark
+# Benchmarks of Trained Detection Models
 
 Tools to calculate benchmarks, save and analyze results.
 
