@@ -25,6 +25,41 @@ Hardware Recommendations: NVIDIA RTX 4090
 
 - **models** - directory for saving models
 
+## Setting Up a Virtual Environment
+
+### Windows
+
+1. Open Command Prompt or PowerShell.
+2. Navigate to the repository directory.
+3. Create a virtual environment:
+```shell
+python -m venv venv
+```
+4. Activate the virtual environment:
+```shell
+venv/Scripts/activate
+```
+
+### Linux
+
+1. Open a terminal.
+2. Navigate to the repository directory.
+3. Create a virtual environment:
+```shell
+python3 -m venv venv
+```
+4. Activate the virtual environment:
+```shell
+source venv/bin/activate
+```
+
+### Installing Packages
+With the virtual environment activated, install the necessary packages using:
+
+```shell
+pip install -r requirements.txt
+```
+
 ## Code launch
 
 ### Standard startup without parameters
@@ -66,40 +101,6 @@ Model Quality Presets
     - high_quality: Uses DINO-Resnet50 model
     - best_quality: Uses DINO-SwinL model
 
-## Setting Up a Virtual Environment
-
-### Windows
-
-1. Open Command Prompt or PowerShell.
-2. Navigate to the repository directory.
-3. Create a virtual environment:
-```shell
-python -m venv venv
-```
-4. Activate the virtual environment:
-```shell
-venv/Scripts/activate
-```
-
-### Linux
-
-1. Open a terminal.
-2. Navigate to the repository directory.
-3. Create a virtual environment:
-```shell
-python3 -m venv venv
-```
-4. Activate the virtual environment:
-```shell
-source venv/bin/activate
-```
-
-### Installing Packages
-With the virtual environment activated, install the necessary packages using:
-
-```shell
-pip install -r requirements.txt
-```
 
 # benchmark
 
