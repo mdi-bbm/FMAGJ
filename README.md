@@ -5,6 +5,7 @@
   <img src="img2.png" width="400"/>
 </div>
 
+
 This repository contains the following folders, which are described below:
   - [Datasets of Fluorescence Microscopic Astrocyte Gap Junction Images](#datasets-of-fluorescence-microscopic-astrocyte-gap-junction-images) 
   - [Training Detection Models on Datasets](#training-detection-models-on-datasets)
